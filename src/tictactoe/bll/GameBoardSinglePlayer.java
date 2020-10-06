@@ -5,6 +5,7 @@ package tictactoe.bll;
  * It is used for games where there are one human player vs. a computer player.
  */
 public class GameBoardSinglePlayer implements IGameModel {
+    public int Id=0;
 
     protected GameBoardSinglePlayer() {
 
@@ -18,7 +19,7 @@ public class GameBoardSinglePlayer implements IGameModel {
     @Override
     public int getNextPlayer() {
         //TODO Implement this method
-        return 0;
+        return Id;
     }
 
     /**
@@ -34,7 +35,9 @@ public class GameBoardSinglePlayer implements IGameModel {
     @Override
     public boolean play(int col, int row) {
         //TODO Implement this method
-        return false;
+
+            return false;
+
     }
 
     /**
@@ -65,6 +68,6 @@ public class GameBoardSinglePlayer implements IGameModel {
      */
     @Override
     public void newGame() {
-        //TODO Implement this method
+
     }
 }

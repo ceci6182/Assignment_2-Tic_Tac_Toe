@@ -1,12 +1,24 @@
 package tictactoe.bll;
 
+import javafx.scene.Node;
+import tictactoe.gui.controller.TicTacViewController;
+
+import javax.swing.*;
+
 /**
  * The GameBoardTwoPlayer class is the mandatory implementation for the TicTacToe assignment.
  * It is used for games where there are two human players.
  */
 public class GameBoardTwoPlayer implements IGameModel {
+    private int id;
+    private String[] map;
+    private int availableSlots;
+    private final int COLS = 3;
+    private final int ROWS = 3;
 
     protected GameBoardTwoPlayer() {
+        map = new String[COLS * ROWS];
+        availableSlots = COLS * ROWS;
 
     }
 
@@ -17,8 +29,7 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public int getNextPlayer() {
-        //TODO Implement this method
-        return 0;
+        return id;
     }
 
     /**
@@ -33,15 +44,27 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public boolean play(int col, int row) {
-        //TODO Implement this method
-        return true;
+        if (map[col + row * COLS] == null && !isGameOver()) {
+            map[col + row * COLS] = (id == 0) ? "X" : "O";
+            availableSlots -= 1;
+            if (id == 0) {
+                id++;
+            }
+            else {
+                id= 0;
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
      * Tells us if the game has ended either by draw or by meeting the winning
      * condition.
      *
-     * @return true if the game is over, else it will retun false.
+     * @return true if the game is over, else it will return false.
      */
     @Override
     public boolean isGameOver() {
