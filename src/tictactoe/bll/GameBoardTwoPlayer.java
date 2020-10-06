@@ -93,12 +93,14 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     private boolean checkWinner() {
         for (int i=0; i<3; i++) {
-            if ("X" == map[i * COLS] && "X" == map[1 + i * COLS] && "X" == map[2 + i * COLS] || "X" == map[i] && "X" == map[COLS +i] && "X" == map[2 * COLS +i] || "X"== map[0] && "X"== map[1 + COLS] && "X"== map[2 + 2* COLS] || "X"== map[2] && "X"== map[1 + COLS] && "X"== map[2 * COLS]  ) {
+            if ("X" == map[i * COLS] && "X" == map[1 + i * COLS] && "X" == map[2 + i * COLS] || "X" == map[i] && "X" == map[COLS +i] && "X" == map[2 * COLS +i]
+                    || "X"== map[0] && "X"== map[1 + COLS] && "X"== map[2 + 2* COLS] || "X"== map[2] && "X"== map[1 + COLS] && "X"== map[2 * COLS]  ) {
                 winner = 0;
                 isADraw = false;
                 winnerFound = true;
             }
-            if ( "O" == map[i] && "O" == map[COLS +i] && "O" == map[2 * COLS +i] || "O" == map[i * COLS] && "O" == map[1 + i * COLS] && "O" == map[2 + i * COLS] || "O"== map[0] && "O"== map[1 + COLS] && "O"== map[2 + 2* COLS] || "O"== map[2] && "O"== map[1 + COLS] && "O"== map[2 * COLS] ) {
+            if ( "O" == map[i] && "O" == map[COLS +i] && "O" == map[2 * COLS +i] || "O" == map[i * COLS] && "O" == map[1 + i * COLS] && "O" == map[2 + i * COLS]
+                    || "O"== map[0] && "O"== map[1 + COLS] && "O"== map[2 + 2* COLS] || "O"== map[2] && "O"== map[1 + COLS] && "O"== map[2 * COLS] ) {
                 winner = 1;
                 isADraw = false;
                 winnerFound = true;
