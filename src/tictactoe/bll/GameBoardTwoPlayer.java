@@ -74,7 +74,6 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public boolean isGameOver() {
-        //TODO Implement this method
         if (checkWinner()) {
             return true;
         }
@@ -87,30 +86,23 @@ public class GameBoardTwoPlayer implements IGameModel {
         }
     }
 
+    /**
+     * Searches coordinates to check if three matching "X"'s and "O"'s has been placed, if that is the case the method return true, if not it returns false
+     * it checks (vertically || horizontally ||diagonally L to R ||diagonally R to L)
+     * @return
+     */
     private boolean checkWinner() {
         for (int i=0; i<3; i++) {
-            if ("X" == map[0 + i * COLS] && "X" == map[1 + i * COLS] && "X" == map[2 + i * COLS] || "O" == map[0 + i * COLS] && "O" == map[1 + i * COLS] && "O" == map[2 + i * COLS]) {
-                winner = id;
+            if ("X" == map[i * COLS] && "X" == map[1 + i * COLS] && "X" == map[2 + i * COLS] || "X" == map[i] && "X" == map[COLS +i] && "X" == map[2 * COLS +i] || "X"== map[0] && "X"== map[1 + COLS] && "X"== map[2 + 2* COLS] || "X"== map[2] && "X"== map[1 + COLS] && "X"== map[2 * COLS]  ) {
+                winner = 0;
                 isADraw = false;
                 winnerFound = true;
             }
-        }
-        for (int i=0; i<3; i++) {
-            if ("X" == map[0 * COLS + i] && "X" == map[1 * COLS +i] && "X" == map[2 * COLS +i] || "O" == map[0 * COLS + i] && "O" == map[1 * COLS +i] && "O" == map[2 * COLS +i] ) {
-                winner = id;
+            if ( "O" == map[i] && "O" == map[COLS +i] && "O" == map[2 * COLS +i] || "O" == map[i * COLS] && "O" == map[1 + i * COLS] && "O" == map[2 + i * COLS] || "O"== map[0] && "O"== map[1 + COLS] && "O"== map[2 + 2* COLS] || "O"== map[2] && "O"== map[1 + COLS] && "O"== map[2 * COLS] ) {
+                winner = 1;
                 isADraw = false;
                 winnerFound = true;
             }
-        }
-        if ("X"== map[0 + 0* COLS] && "X"== map[1 + 1* COLS] && "X"== map[2 + 2* COLS] || "O"== map[0 + 0* COLS] && "O"== map[1 + 1* COLS] && "O"== map[2 + 2* COLS]) {
-            winner = id;
-            isADraw = false;
-            winnerFound = true;
-        }
-        if ("X"== map[2 + 0* COLS] && "X"== map[1 + 1* COLS] && "X"== map[0 + 2* COLS] || "O"== map[2 + 0* COLS] && "O"== map[1 + 1* COLS] && "O"== map[0 + 2* COLS]) {
-            winner = id;
-            isADraw = false;
-            winnerFound = true;
         }
         return winnerFound;
     }
