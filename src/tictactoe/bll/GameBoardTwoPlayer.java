@@ -114,7 +114,6 @@ public class GameBoardTwoPlayer implements IGameModel {
      */
     @Override
     public int getWinner() {
-        //TODO Implement this method
         if (!isADraw) {
             return winner;
         }
