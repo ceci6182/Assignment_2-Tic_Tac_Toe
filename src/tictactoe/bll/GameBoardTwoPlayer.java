@@ -87,9 +87,9 @@ public class GameBoardTwoPlayer implements IGameModel {
     }
 
     /**
-     * Searches coordinates to check if three matching "X"'s and "O"'s has been placed, if that is the case the method return true, if not it returns false
+     * Searches coordinates to check if three matching "X"'s and "O"'s has been placed.
      * it checks (vertically || horizontally ||diagonally L to R ||diagonally R to L)
-     * @return
+     * @return the method return true if a winner is found, if not it returns false
      */
     private boolean checkWinner() {
         for (int i=0; i<3; i++) {
