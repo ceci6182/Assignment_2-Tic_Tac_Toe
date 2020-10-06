@@ -50,9 +50,6 @@ public class GameBoardTwoPlayer implements IGameModel {
         if (map[col + row * COLS] == null && !isGameOver()) {
             map[col + row * COLS] = (id == 0) ? "X" : "O";
             availableSlots -= 1;
-            System.out.println("col: "+ col);
-            System.out.println("row: "+ row);
-            System.out.println(map[col + row * COLS]);
             if (id == 0) {
                 id++;
             }
@@ -88,7 +85,7 @@ public class GameBoardTwoPlayer implements IGameModel {
 
     /**
      * Searches coordinates to check if three matching "X"'s and "O"'s has been placed.
-     * it checks (vertically || horizontally ||diagonally L to R ||diagonally R to L)
+     * it checks ( horizontally||  vertically ||diagonally from top left to bottom right ||diagonally from top right to bottom left)
      * @return the method return true if a winner is found, if not it returns false
      */
     private boolean checkWinner() {
@@ -130,6 +127,10 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public void newGame() {
         //TODO Implement this method
+        map = new String[COLS * ROWS];
+        availableSlots = COLS * ROWS;
+        winnerFound = false;
+        isADraw =false;
     }
 
 }
