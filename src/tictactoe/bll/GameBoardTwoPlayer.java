@@ -10,11 +10,14 @@ import javax.swing.*;
  * It is used for games where there are two human players.
  */
 public class GameBoardTwoPlayer implements IGameModel {
-    private int id;
+    private int id=0;
+    private int winner;
     private String[] map;
     private int availableSlots;
     private final int COLS = 3;
     private final int ROWS = 3;
+    private boolean isADraw = false;
+    private boolean winnerFound =false;
 
     protected GameBoardTwoPlayer() {
         map = new String[COLS * ROWS];
@@ -47,6 +50,9 @@ public class GameBoardTwoPlayer implements IGameModel {
         if (map[col + row * COLS] == null && !isGameOver()) {
             map[col + row * COLS] = (id == 0) ? "X" : "O";
             availableSlots -= 1;
+            System.out.println("col: "+ col);
+            System.out.println("row: "+ row);
+            System.out.println(map[col + row * COLS]);
             if (id == 0) {
                 id++;
             }
@@ -69,7 +75,44 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public boolean isGameOver() {
         //TODO Implement this method
-        return false;
+        if (checkWinner()) {
+            return true;
+        }
+        else if (availableSlots == 0) {
+            isADraw = true;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private boolean checkWinner() {
+        for (int i=0; i<3; i++) {
+            if ("X" == map[0 + i * COLS] && "X" == map[1 + i * COLS] && "X" == map[2 + i * COLS] || "O" == map[0 + i * COLS] && "O" == map[1 + i * COLS] && "O" == map[2 + i * COLS]) {
+                winner = id;
+                isADraw = false;
+                winnerFound = true;
+            }
+        }
+        for (int i=0; i<3; i++) {
+            if ("X" == map[0 * COLS + i] && "X" == map[1 * COLS +i] && "X" == map[2 * COLS +i] || "O" == map[0 * COLS + i] && "O" == map[1 * COLS +i] && "O" == map[2 * COLS +i] ) {
+                winner = id;
+                isADraw = false;
+                winnerFound = true;
+            }
+        }
+        if ("X"== map[0 + 0* COLS] && "X"== map[1 + 1* COLS] && "X"== map[2 + 2* COLS] || "O"== map[0 + 0* COLS] && "O"== map[1 + 1* COLS] && "O"== map[2 + 2* COLS]) {
+            winner = id;
+            isADraw = false;
+            winnerFound = true;
+        }
+        if ("X"== map[2 + 0* COLS] && "X"== map[1 + 1* COLS] && "X"== map[0 + 2* COLS] || "O"== map[2 + 0* COLS] && "O"== map[1 + 1* COLS] && "O"== map[0 + 2* COLS]) {
+            winner = id;
+            isADraw = false;
+            winnerFound = true;
+        }
+        return winnerFound;
     }
 
     /**
@@ -80,7 +123,12 @@ public class GameBoardTwoPlayer implements IGameModel {
     @Override
     public int getWinner() {
         //TODO Implement this method
-        return -1;
+        if (!isADraw) {
+            return winner;
+        }
+        else {
+            return -1;
+        }
     }
 
     /**
