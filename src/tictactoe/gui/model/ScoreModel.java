@@ -2,8 +2,12 @@ package tictactoe.gui.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tictactoe.bll.GameBoardTwoPlayer;
+import tictactoe.bll.IGameModel;
 
 public class ScoreModel {
+
+    int j = 1;
 
     private ObservableList<String> winners;
 
@@ -16,7 +20,14 @@ public class ScoreModel {
     }
 
     public void setNextWinner(String winner) {
-
+        if (GameBoardTwoPlayer.isADraw)
+        {
+            getWinners().add("Round " + j + ": tie");
+        }
+        else {
+            getWinners().add("Round " + j + ": " + winner);
+        }
+        j++;
     }
 
 }

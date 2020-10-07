@@ -2,6 +2,7 @@ package tictactoe.bll;
 
 import javafx.scene.Node;
 import tictactoe.gui.controller.TicTacViewController;
+import tictactoe.gui.model.ScoreModel;
 
 import javax.swing.*;
 
@@ -10,14 +11,16 @@ import javax.swing.*;
  * It is used for games where there are two human players.
  */
 public class GameBoardTwoPlayer implements IGameModel {
+
     private int id=0;
     private int winner;
     private String[] map;
     private int availableSlots;
     private final int COLS = 3;
     private final int ROWS = 3;
-    private boolean isADraw = false;
     private boolean winnerFound =false;
+
+    public static boolean isADraw = false;
 
     protected GameBoardTwoPlayer() {
         map = new String[COLS * ROWS];
